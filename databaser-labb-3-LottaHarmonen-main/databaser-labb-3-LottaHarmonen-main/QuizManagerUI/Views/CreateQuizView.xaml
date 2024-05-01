@@ -1,0 +1,282 @@
+﻿<UserControl x:Class="QuizManagerUI.Views.CreateQuizView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuizManagerUI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#001F3F"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <Border Grid.Row="3"
+                Grid.Column="0" 
+                Margin="10" 
+                CornerRadius="5" 
+                Background="#004080"
+                BorderBrush="#004080"
+                BorderThickness="1"
+                >
+            <TextBox Name="QuizTitleBox" 
+                     Background="Transparent" 
+                     Foreground="#CCCCCC" 
+                     BorderThickness="0"
+                     Text="{Binding InputQuizTitle, Mode=TwoWay}" 
+                     />
+        </Border>
+
+        <Border 
+            Grid.Row="4" 
+            Grid.Column="0" 
+            Height="50" 
+            Margin="10" 
+            CornerRadius="5" 
+            Background="#004080" 
+            BorderBrush="#004080" 
+            BorderThickness="1"
+            >
+            <TextBox 
+                Name="QuizDescriptionBox" 
+                Background="#CCCCCC"
+                Foreground="#004080" 
+                BorderThickness="0"
+                Text="{Binding InputQuizDescription, Mode=TwoWay}" 
+                />
+        </Border>
+
+        <Button 
+            Grid.Row="6" 
+            Name="AddQuizBtn" 
+            Content="Add" 
+            Margin="10" 
+            Background="#004080" 
+            FontSize="17" 
+            Foreground="#CCCCCC"
+            Command="{Binding AddNewQuizCommand}"
+            >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Opacity" Value="1" />
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button 
+            Grid.Row="7" 
+            Name="UpdateQuizBtn" 
+            Content="Update" 
+            Margin="10" 
+            Background="#004080" 
+            FontSize="17"
+            Foreground="#CCCCCC"
+            Command="{Binding UpdateQuizCommand}"
+            >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Opacity" Value="1" />
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button 
+            Grid.Row="8" 
+            Name="DeleteQuizBtn" 
+            Content="Delete" 
+            Margin="10" 
+            Background="#004080" 
+            FontSize="17" 
+            Foreground="#CCCCCC"
+            Command="{Binding RemoveQuizCommand}"
+            >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Opacity" Value="1" />
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <ListView Grid.Row="9" 
+                  Grid.Column="0" 
+                  Height="100" 
+                  Name="AllQuizzesListView" 
+                  Margin="10"
+                  ItemsSource="{Binding Quizzes}"
+                  SelectedItem="{Binding SelectedQuizListView}"
+
+                  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="All quizzes" DisplayMemberBinding="{Binding quizTitle}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock Grid.Row="3" 
+                   Grid.Column="1" 
+                   Text="All questions in the selected quiz"
+                   Foreground="#CCCCCC" 
+                   FontSize="15"
+                   VerticalAlignment="Bottom"
+                   Margin="10"
+                   >
+        </TextBlock>
+
+        <ListView Grid.Row="4" 
+                  Grid.RowSpan="3" 
+                  Grid.Column="1" 
+                  Name="AllQuestionsInSelectedQuizListView" 
+                  Margin="10" 
+                  Background="#001F3F"
+                  Foreground="#CCCCCC"
+                  ItemsSource="{Binding SelectedQuizQuestions, Mode=OneWay}"
+                  SelectedItem="{Binding SelectedQuestionToRemove}"
+                  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding QuestionText}" Header="Questions" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Row="7" 
+                Grid.Column="1"
+                Name="DeleteQuestionsFromQuiz"
+                Content="Delete question from quiz"
+                Margin="10" 
+                Background="#004080" 
+                FontSize="17" 
+                Foreground="#CCCCCC"
+                Command="{Binding RemoveQuestionCommand}"
+                >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+      
+        <TextBlock Grid.Row="8" 
+                   Grid.Column="1"
+                   Text="Sort questions by title and add to quiz" 
+                   Margin="10" 
+                   Foreground="#CCCCCC" 
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   >
+
+        </TextBlock>
+
+        <TextBox Grid.Row="8"
+                  Grid.Column="1" 
+                  Name="SortByTitleTextBox" 
+                  HorizontalAlignment="Right"
+                  Margin="10"
+                  Width="280"
+                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  >
+
+        </TextBox>
+
+        <ListView Grid.Row="9" 
+                  Grid.RowSpan="2" 
+                  Grid.Column="1" 
+                  Name="AllQuestionsListView" 
+                  Margin="10" 
+                  Background="#001F3F"
+                  Foreground="#CCCCCC"
+                  ItemsSource="{Binding Questions, Mode=OneWay}"
+                  SelectedItem="{Binding SelectedQuestionForQuiz}"
+                  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding QuestionText}" Header="All questions" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Grid.Row="11" 
+                Grid.Column="1" 
+                Name="AddQuestionToQuizBtn" 
+                Content="Use selected question (Add to quiz)" 
+                Margin="10" 
+                Background="#004080" 
+                FontSize="17" 
+                Foreground="#CCCCCC"
+                Command="{Binding AddQuestionsCommand}"
+                >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</UserControl>
