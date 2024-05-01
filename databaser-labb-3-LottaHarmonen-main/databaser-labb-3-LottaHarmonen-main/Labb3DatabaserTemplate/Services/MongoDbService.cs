@@ -19,8 +19,8 @@ public class MongoDbService
 
     public MongoDbService()
     {
-        var hostName = "localhost";
-        var port = "27017";
+        var hostName = "your_hostname";
+        var port = "your_port";
         var databaseName = "QuizManagerDb";
         var client = new MongoClient($"mongodb://{hostName}:{port}");
         var database = client.GetDatabase(databaseName);
