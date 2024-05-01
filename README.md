@@ -13,5 +13,6 @@ A quiz application developed in C# using MongoDB.Driver. This application is a W
 ## How to Use:
 1. Clone this repository to your local machine.
 2. Open the solution in Visual Studio or your preferred IDE.
-3. Build and run the application.
-4. Explore the features listed above to manage quizzes, questions, and categories.
+4. Navigate to the constructor of the MongoDbService class and replace the placeholder values with your MongoDB connection details
+5. Build and run the application.
+6. Explore the features listed above to manage quizzes, questions, and categories.
